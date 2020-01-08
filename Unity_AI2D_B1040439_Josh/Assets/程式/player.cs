@@ -14,6 +14,9 @@ public class player : MonoBehaviour
     private Rigidbody2D r2d;
     private Transform tra;
     public Animator ani;
+    private AudioSource aud;
+
+    public AudioClip coinsound;
 
     public Image hpBar;
     private float maxHP;
@@ -25,6 +28,7 @@ public class player : MonoBehaviour
         r2d = GetComponent<Rigidbody2D>();
         tra = GetComponent<Transform>();
         ani = GetComponent<Animator>();
+        aud = GetComponent<AudioSource>();
 
         maxHP = hp;
     }
@@ -53,6 +57,7 @@ public class player : MonoBehaviour
         {
             Destroy(collision.gameObject);
             npc.count.count_player += 1;
+            aud.PlayOneShot(coinsound, 0.5f);
         }
     }
 

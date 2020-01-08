@@ -25,6 +25,7 @@ public class npc : MonoBehaviour
     public Text textSay;
 
     public static npc count;
+    public GameObject final;
 
     private void Start()
     {
@@ -48,7 +49,11 @@ public class npc : MonoBehaviour
         objcan.SetActive(true);
         StopAllCoroutines();
 
-        if (count_player >= finish) _state = state.complete;
+        if (count_player >= finish)
+        {
+            _state = state.complete;
+            Invoke("END", 2f);
+        } 
 
         switch (_state)
         {
@@ -85,5 +90,9 @@ public class npc : MonoBehaviour
     void Get()
     {
         count_player++;
+    }
+    void END()
+    {
+        final.SetActive(true);
     }
 }
